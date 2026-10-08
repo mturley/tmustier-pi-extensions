@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Add a **This Month** period for usage from local midnight on the first day of the current month.
+
 ## [0.9.5] - 2026-09-22
 
 ### Changed
