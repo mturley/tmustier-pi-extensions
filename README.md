@@ -1,5 +1,8 @@
 # pi-extensions
 
+> [!NOTE]
+> This is a fork of [tmustier/pi-extensions](https://github.com/tmustier/pi-extensions), with some tweaks to Thomas's packages.
+
 Personal extensions for the [Pi coding agent](https://github.com/badlogic/pi-mono).
 
 ## Extensions

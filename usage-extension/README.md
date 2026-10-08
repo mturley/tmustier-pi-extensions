@@ -1,5 +1,8 @@
 # /usage - Usage Statistics Dashboard
 
+> [!NOTE]
+> This usage extension is from a fork of [tmustier/pi-extensions](https://github.com/tmustier/pi-extensions), with tweaks to Thomas's original package.
+
 A Pi extension that displays aggregated usage statistics across all sessions.
 
 ![Default graphs view of /usage](graphs-screenshot.png)
@@ -7,7 +10,7 @@ A Pi extension that displays aggregated usage statistics across all sessions.
 ## Compatibility
 
 - **Pi version:** 0.42.4+
-- **Last updated:** 2026-07-22 (0.9.3)
+- **Last updated:** 2026-10-08 (0.10.1)
 
 Pi 0.81.0+ can persist tool-result, compaction, and branch-summary usage. `/usage` includes that auxiliary usage in totals under `Tools / summaries`. Nested-agent reports are reconciled against recursively scanned child sessions, so a child call is counted once: when every child session file behind a report is part of the scan, the children are the record and the parent's aggregate is skipped; otherwise the report is counted. Older Pi versions remain supported.
 
@@ -16,11 +19,11 @@ Pi 0.81.0+ can persist tool-result, compaction, and branch-summary usage. `/usag
 ### Pi package manager
 
 ```bash
-pi install npm:@tmustier/pi-usage-extension
+pi install npm:@mturley/pi-usage-extension
 ```
 
 ```bash
-pi install git:github.com/tmustier/pi-extensions
+pi install git:github.com/mturley/tmustier-pi-extensions
 ```
 
 Then filter to just this extension in `~/.pi/agent/settings.json`:
@@ -29,7 +32,7 @@ Then filter to just this extension in `~/.pi/agent/settings.json`:
 {
   "packages": [
     {
-      "source": "git:github.com/tmustier/pi-extensions",
+      "source": "git:github.com/mturley/tmustier-pi-extensions",
       "extensions": ["usage-extension/index.ts"]
     }
   ]

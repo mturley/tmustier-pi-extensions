@@ -1,9 +1,15 @@
 # Changelog
 
-## Unreleased
+## [0.10.1] - 2026-10-08
+
+### Changed
+- Document fork attribution in the project and usage-extension READMEs.
+
+## [0.10.0] - 2026-10-08
 
 ### Added
 - Add a **This Month** period for usage from local midnight on the first day of the current month.
+- Publish the standalone package as `@mturley/pi-usage-extension`.
 
 ## [0.9.5] - 2026-09-22
 
