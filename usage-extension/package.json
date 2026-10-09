@@ -1,6 +1,6 @@
 {
   "name": "@mturley/pi-usage-extension",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Usage statistics dashboard for Pi sessions.",
   "license": "MIT",
   "author": "Mike Turley",
