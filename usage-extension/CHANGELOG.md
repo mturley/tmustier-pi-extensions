@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.10.2] - 2026-10-09
+
+### Added
+- Show today's and this month's usage totals in the Pi statusline, refreshed at session start and after each agent run.
+
 ## [0.10.1] - 2026-10-08
 
 ### Changed
