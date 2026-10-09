@@ -930,6 +930,32 @@ class UsageComponent {
 // =============================================================================
 
 export default function (pi: ExtensionAPI) {
+	const statusKey = "usage-extension";
+	let statusRefresh = 0;
+
+	const refreshUsageStatus = async (ctx: ExtensionCommandContext | import("@earendil-works/pi-coding-agent").ExtensionContext): Promise<void> => {
+		if (ctx.mode !== "tui") return;
+		const refreshId = ++statusRefresh;
+		try {
+			const data = await collectUsageData();
+			if (!data || refreshId !== statusRefresh) return;
+			ctx.ui.setStatus(statusKey, `Today: $${data.today.totals.cost.toFixed(2)}  This Month: $${data.thisMonth.totals.cost.toFixed(2)}`);
+		} catch {
+			// Status reporting is best-effort and must not interfere with the session.
+		}
+	};
+
+	pi.on("session_start", async (_event, ctx) => {
+		void refreshUsageStatus(ctx);
+	});
+	pi.on("agent_end", async (_event, ctx) => {
+		void refreshUsageStatus(ctx);
+	});
+	pi.on("session_shutdown", async (_event, ctx) => {
+		statusRefresh++;
+		ctx.ui.setStatus(statusKey, undefined);
+	});
+
 	pi.registerCommand("usage", {
 		description: "Show usage statistics dashboard",
 		handler: async (_args: string, ctx: ExtensionCommandContext) => {
