@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.3] - 2026-10-26
+
+### Changed
+- Publish today's and this month's totals under separate status keys so Powerline can render them as independent items.
+- Dim the `Today:` and `This Month:` labels while keeping the amounts at normal intensity.
+
 ## [0.10.2] - 2026-10-26
 
 ### Added
