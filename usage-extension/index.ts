@@ -930,7 +930,9 @@ class UsageComponent {
 // =============================================================================
 
 export default function (pi: ExtensionAPI) {
-	const statusKey = "usage-extension";
+	const legacyStatusKey = "usage-extension";
+	const todayStatusKey = "usage-extension-today";
+	const thisMonthStatusKey = "usage-extension-this-month";
 	let statusRefresh = 0;
 
 	const refreshUsageStatus = async (ctx: ExtensionCommandContext | import("@earendil-works/pi-coding-agent").ExtensionContext): Promise<void> => {
@@ -939,13 +941,15 @@ export default function (pi: ExtensionAPI) {
 		try {
 			const data = await collectUsageData();
 			if (!data || refreshId !== statusRefresh) return;
-			ctx.ui.setStatus(statusKey, `Today: $${data.today.totals.cost.toFixed(2)}  This Month: $${data.thisMonth.totals.cost.toFixed(2)}`);
+			ctx.ui.setStatus(todayStatusKey, `\x1b[2mToday: \x1b[0m$${data.today.totals.cost.toFixed(2)}`);
+			ctx.ui.setStatus(thisMonthStatusKey, `\x1b[2mThis Month: \x1b[0m$${data.thisMonth.totals.cost.toFixed(2)}`);
 		} catch {
 			// Status reporting is best-effort and must not interfere with the session.
 		}
 	};
 
 	pi.on("session_start", async (_event, ctx) => {
+		ctx.ui.setStatus(legacyStatusKey, undefined);
 		void refreshUsageStatus(ctx);
 	});
 	pi.on("agent_end", async (_event, ctx) => {
@@ -953,7 +957,9 @@ export default function (pi: ExtensionAPI) {
 	});
 	pi.on("session_shutdown", async (_event, ctx) => {
 		statusRefresh++;
-		ctx.ui.setStatus(statusKey, undefined);
+		ctx.ui.setStatus(legacyStatusKey, undefined);
+		ctx.ui.setStatus(todayStatusKey, undefined);
+		ctx.ui.setStatus(thisMonthStatusKey, undefined);
 	});
 
 	pi.registerCommand("usage", {
