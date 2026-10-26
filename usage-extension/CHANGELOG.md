@@ -1,20 +1,6 @@
 # Changelog
 
-## [0.10.3] - 2026-10-26
-
-### Changed
-- Publish today's and this month's totals under separate status keys so Powerline can render them as independent items.
-- Dim the `Today:` and `This Month:` labels while keeping the amounts at normal intensity.
-
-## [0.10.2] - 2026-10-26
-
-### Added
-- Show today's and this month's usage totals in the Pi statusline, refreshed at session start and after each agent run.
-
-## [0.10.1] - 2026-10-26
-
-### Changed
-- Document fork attribution in the project and usage-extension READMEs.
+This file tracks releases of the upstream `@tmustier/pi-usage-extension` package. Releases of the `@mturley/pi-usage-extension` fork are documented in [FORK_CHANGELOG.md](FORK_CHANGELOG.md).
 
 ## [0.10.0] - 2026-10-26
 
@@ -22,7 +8,7 @@
 - **This Month period.** New tab between Last Week and Last 30 Days covering the current calendar month from local midnight on the 1st, in the graph, table, insights, and exports. Useful when a usage budget resets on the 1st of each month.
 
 ### Fixed
-- Collapse Windows home directories in project labels. Backslash paths are normalised, `C:\\Users\\<name>\\...` collapses to `~/...` like `/Users/<name>` and `/home/<name>`, and other drive paths drop the drive letter (`D:\\work\\repo` becomes `work/repo`). Previously the project mix insight showed raw Windows paths.
+- Collapse Windows home directories in project labels. Backslash paths are normalised, `C:\Users\<name>\...` collapses to `~/...` like `/Users/<name>` and `/home/<name>`, and other drive paths drop the drive letter (`D:\work\repo` becomes `work/repo`). Previously the project mix insight showed raw Windows paths.
 - Make the usage tests pass on Windows.
 
 Thanks to @mturley for This Month ([#114](https://github.com/tmustier/pi-extensions/pull/114), requested in [#107](https://github.com/tmustier/pi-extensions/issues/107)) and @dawidmachon for the Windows fix ([#110](https://github.com/tmustier/pi-extensions/pull/110)).
